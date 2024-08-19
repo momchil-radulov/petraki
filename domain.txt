@@ -1,0 +1,5 @@
+Superhosting
+ИМЕ НА ХОСТ	АДРЕС	      TTL   ТИП ЗАПИС
+*.petraki       185.45.67.98  300   A запис (IPv4)
+petraki         185.45.67.98  300   A запис (IPv4)
+www.petraki     185.45.67.98  300   A запис (IPv4)

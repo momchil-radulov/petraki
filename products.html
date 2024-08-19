@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Продуктова Галерия</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .menu {
+            width: 100%;
+            background-color: #f8f8f8;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f2a93a;
+            /* Леко оранжев цвят на текст */
+            font-weight: bold;
+        }
+
+        .content {
+            margin-top: 50px;
+            max-width: 100%;
+            /* Регулирано за да има място за менюто */
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 20px;
+            margin: 10px;
+            flex: 1 1 calc(33.333% - 20px);
+            /* Параметри за разпределяне на контейнерите */
+            box-sizing: border-box;
+        }
+
+        .gallery {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .gallery-item {
+            text-align: center;
+            margin: 0 10px;
+        }
+
+        .gallery-item img {
+            height: 300px;
+            width: auto;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .gallery-item p {
+            margin-top: 10px;
+            font-size: 16px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 70px;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0, 0, 0);
+            background-color: rgba(0, 0, 0, 0.9);
+        }
+
+        .modal-content {
+            padding-top: 50px;
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 90%;
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        @media (min-width: 1024px) {
+            .menu a {
+                font-size: 150%;
+            }
+        }
+        @media screen and (max-width: 900px) {
+            .gallery-item img {
+                height: 250px;
+            }
+        }
+        @media screen and (max-width: 700px) {
+            .gallery-item img {
+                height: 200px;
+            }
+            p {
+                min-height: 40px;
+            }
+        }
+        @media screen and (max-width: 500px) {
+            .gallery-item img {
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="index.html">Начало</a>
+        <a href="products.html">Продукти</a>
+        <a href="our.html">За нас</a>
+        <a href="contacts.html">Контакти</a>
+    </div>
+    <div class="content">
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печена Вита баница</p>
+                    <img src="pecheni/Вита баница в тарелка 900 гр..jpg" alt="Печена Вита баница"
+                        onclick="openModal('pecheni/Вита баница в тарелка 900 гр..jpg')">
+                    <p>В тарелка 900 гр.</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурова Вита баница</p>
+                    <img src="surovi/Вита баница в тарелка 900 гр..jpg" alt="Сурова Вита баница"
+                        onclick="openModal('surovi/Вита баница в тарелка 900 гр..jpg')">
+                    <p>В тарелка 900 гр.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печена Баничка подкова</p>
+                    <img src="pecheni/Баничка подкова 180 гр..jpg" alt="Печена Баничка подкова"
+                        onclick="openModal('pecheni/Баничка подкова 180 гр..jpg')">
+                    <p>180 гр. / брой</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурова Баничка подкова</p>
+                    <img src="surovi/Баничка подкова 180 гр..jpg" alt="Сурова Баничка подкова"
+                        onclick="openModal('surovi/Баничка подкова 180 гр..jpg')">
+                    <p>12 бр. / Пакет</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печени Банички пури</p>
+                    <img src="pecheni/Банички пури.jpg" alt="Печени Банички пури"
+                        onclick="openModal('pecheni/Банички пури.jpg')">
+                    <p>100 гр. / брой</p>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурови Банички пури</p>
+                    <img src="surovi/Баница пура пакет.jpg" alt="Сурови Банички пури"
+                        onclick="openModal('surovi/Баница пура пакет.jpg')">
+                    <p>900 гр. / Семеен Пакет</p>
+                    <p>2000 гр. / Кетъринг Пакет</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печени Бейби банички</p>
+                    <img src="pecheni/Бейби банички.jpg" alt="Печени Бейби банички"
+                        onclick="openModal('pecheni/Бейби банички.jpg')">
+                    <p>Семеен Пакет</p>
+                    <p>Кетъринг Пакет</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурови Бейби банички</p>
+                    <img src="surovi/Бейби банички 2кг..jpg" alt="Сурови Бейби банички"
+                        onclick="openModal('surovi/Бейби банички 2кг..jpg')">
+                    <p>900 гр. / Семеен Пакет</p>
+                    <p>2000 гр. / Кетъринг Пакет</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печена Вита Баничка</p>
+                    <img src="pecheni/Вита Баничка 230 гр..jpg" alt="Печена Вита Баничка"
+                        onclick="openModal('pecheni/Вита Баничка 230 гр..jpg')">
+                    <p>230 гр. / брой</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурова Вита Баничка</p>
+                    <img src="surovi/Вита баница 230 гр..jpg" alt="Сурова Вита Баничка"
+                        onclick="openModal('surovi/Вита баница 230 гр..jpg')">
+                    <p>12 бр. / Пакет</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печена Вита Баничка</p>
+                    <img src="pecheni/Вита Баничка 230 гр..jpg" alt="Печена Вита Баничка"
+                        onclick="openModal('pecheni/Вита Баничка 230 гр..jpg')">
+                    <p>150 гр. / брой</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурови Вити Банички</p>
+                    <img src="surovi/Вити банички.jpg" alt="Сурови Вити Банички"
+                        onclick="openModal('surovi/Вити банички.jpg')">
+                    <p>900 гр. / 6 бр Пакет</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печена Дълга баница</p>
+                    <img src="pecheni/дълга баница.jpg" alt="Печена Дълга баница"
+                        onclick="openModal('pecheni/дълга баница.jpg')">
+                    <p>230 гр. / брой</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурова Дълга баница</p>
+                    <img src="surovi/Дълга баница 230 гр..jpg" alt="Сурова Дълга баница"
+                        onclick="openModal('surovi/Дълга баница 230 гр..jpg')">
+                    <p>230 гр. / брой</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печена Дълга баница</p>
+                    <img src="pecheni/дълга баница.jpg" alt="Печена Дълга баница"
+                        onclick="openModal('pecheni/дълга баница.jpg')">
+                    <p>230 гр. / брой</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурова Дълга баница</p>
+                    <img src="surovi/Дълга баница пакет.jpg" alt="Сурова Дълга баница"
+                        onclick="openModal('surovi/Дълга баница пакет.jpg')">
+                    <p>12 бр. Пакет</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печено Родопско гюзлеме</p>
+                    <img src="pecheni/Гюзлеме 240 ГР..jpg" alt="Печено Родопско гюзлеме"
+                        onclick="openModal('pecheni/Гюзлеме 240 ГР..jpg')">
+                    <p>240 гр. / брой</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурово Родопско гюзлеме</p>
+                    <img src="surovi/Родопско гюзлеме 720 гр..jpg" alt="Сурово Родопско гюзлеме"
+                        onclick="openModal('surovi/Родопско гюзлеме 720 гр..jpg')">
+                    <p>240 гр. / брой</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="gallery">
+                <div class="gallery-item">
+                    <p>Печено Родопско гюзлеме</p>
+                    <img src="pecheni/Гюзлеме 240 ГР..jpg" alt="Печено Родопско гюзлеме"
+                        onclick="openModal('pecheni/Гюзлеме 240 ГР..jpg')">
+                    <p>240 гр. / брой</p>
+                    <p>&nbsp;</p>
+                </div>
+                <div class="gallery-item">
+                    <p>Сурово Родопско гюзлеме</p>
+                    <img src="surovi/Гюзлеме 2400 гр..jpg" alt="Сурово Родопско гюзлеме"
+                        onclick="openModal('surovi/Гюзлеме 2400 гр..jpg')">
+                    <p>720 гр. / 3 бр. Семеен Пакет</p>
+                    <p>2400 гр. / 10 бр. Кетъринг Пакет</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModal" class="modal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImg">
+    </div>
+
+    <script>
+        function openModal(src) {
+            document.getElementById("myModal").style.display = "block";
+            document.getElementById("modalImg").src = src;
+        }
+
+        function closeModal() {
+            document.getElementById("myModal").style.display = "none";
+        }
+    </script>
+
+</body>
+
+</html>
