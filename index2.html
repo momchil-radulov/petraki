@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="bg">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Производство на Замразени Тестени Изделия</title>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            font-family: Arial, sans-serif;
+        }
+
+        .menu {
+            width: 100%;
+            background-color: #f8f8f8;
+            padding: 10px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .menu a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #f2a93a;
+            /* Леко оранжев цвят на текст */
+            font-weight: bold;
+        }
+
+        .content {
+            margin-top: 50px;
+            max-width: 100%;
+            overflow-x: auto;
+            /* Разрешава хоризонтално скролиране */
+            text-align: center;
+        }
+
+        .content img {
+            max-width: 100%;
+            /* Ограничение на ширината, за да не излиза извън контейнера */
+            height: auto;
+            /* Запазва оригиналната височина на изображението */
+        }
+
+        @media (min-width: 1024px) {
+            .menu a {
+                font-size: 150%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="menu">
+        <a href="index2.html">Начало</a>
+        <a href="products.html">Продукти</a>
+        <a href="our.html">За нас</a>
+        <a href="contacts.html">Контакти</a>
+    </div>
+    <div class="content">
+        <img src="logo/брошура готови.jpg" alt="Производство на Замразени Тестени Изделия">
+    </div>
+</body>
+
+</html>
